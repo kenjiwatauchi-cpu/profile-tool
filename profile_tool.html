@@ -294,16 +294,9 @@
     <!-- 日本語プロンプト -->
     <div class="result-card">
       <div class="result-card-title">キャラクターアイコン用プロンプト</div>
-      <div class="prompt-lang">日本語</div>
       <div class="prompt-text" id="prompt-ja"></div>
-    </div>
-
-    <!-- 英語プロンプト -->
-    <div class="result-card">
-      <div class="prompt-lang">英語（Gemini / ImageFX などに貼り付けて使おう）</div>
-      <div class="prompt-text" id="prompt-en"></div>
-      <button class="copy-btn" id="copy-btn" onclick="copyPrompt()">
-        英語プロンプトをコピー
+      <button class="copy-btn" id="copy-btn" onclick="copyPrompt()" style="margin-top:10px;">
+        プロンプトをコピー
       </button>
       <div class="hint-banner" style="margin-top:12px;">
         💡 ヒント：プロンプトに「kawaii」「chibi」などを追加すると雰囲気が変わるよ！
@@ -445,20 +438,17 @@ ${traitsJa}
 
 上記の情報をもとに、この人物のキャラクターアイコンを生成してください。アニメ風イラスト、上半身、明るい背景、個性が伝わるデザインで。`;
 
-  const traitEn = labels.map((l, i) => `${l} (${data[i]}/5)`).join(', ');
-  document.getElementById('prompt-en').textContent =
-`Anime-style character icon illustration, upper body portrait, bright simple background. Character name: ${name}. Personality traits: ${traitEn}. Likes: ${likeStr}. Dislikes: ${disStr}. Expressive face, colorful, friendly, school student vibes. High quality, clean lineart.`;
 }
 
 // コピー
 function copyPrompt() {
-  const text = document.getElementById('prompt-en').textContent;
+  const text = document.getElementById('prompt-ja').textContent;
   navigator.clipboard.writeText(text).then(() => {
     const btn = document.getElementById('copy-btn');
     btn.textContent = 'コピーしました！';
     btn.classList.add('copied');
     setTimeout(() => {
-      btn.textContent = '英語プロンプトをコピー';
+      btn.textContent = 'プロンプトをコピー';
       btn.classList.remove('copied');
     }, 2500);
   });
